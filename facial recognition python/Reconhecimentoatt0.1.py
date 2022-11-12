@@ -7,7 +7,7 @@ mp_hands = mp.solutions.hands
 # For webcam input:
 cap = cv2.VideoCapture(0)
 ###########
-reconhecimento_rosto = mp.solutions.face_detection # ativando a solução de reconhecimento de rosto
+reconhecimento_rosto = mp.solutions.face_detection 
 desenho = mp.solutions.drawing_utils
 reconhecedor_rosto = reconhecimento_rosto.FaceDetection() 
 ##########
@@ -17,7 +17,7 @@ with mp_hands.Hands(
     min_tracking_confidence=0.5) as hands:
   while cap.isOpened():
     #####
-    validacao, frame = cap.read() # lê a imagem da webcam
+    validacao, frame = cap.read()
     if not validacao:
         break
         image.flags.writeable = False
@@ -38,11 +38,11 @@ with mp_hands.Hands(
             mp_drawing_styles.get_default_hand_connections_style())
     # Flip the image horizontally for a selfie-view display.
     imagem = frame
-    lista_rostos = reconhecedor_rosto.process(imagem) # usa o reconhecedor para criar uma lista com os rostos reconhecidos
+    lista_rostos = reconhecedor_rosto.process(imagem)
     
-    if lista_rostos.detections: # caso algum rosto tenha sido reconhecido
-        for rosto in lista_rostos.detections: # para cada rosto que foi reconhecido
-            desenho.draw_detection(imagem, rosto) # desenha o rosto na imagem
+    if lista_rostos.detections: 
+        for rosto in lista_rostos.detections: 
+            desenho.draw_detection(imagem, rosto) 
     
     cv2.imshow("XYZ", imagem) # mostra a imagem da webcam para a gente
     if cv2.waitKey(5) == 27: # ESC # garante que o código vai ser pausado ao apertar ESC (código 27) e que o código vai esperar 5 milisegundos a cada leitura da webcam
